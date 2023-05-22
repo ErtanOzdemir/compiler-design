@@ -2,11 +2,11 @@
 #include <string.h>
 
 
-// char text[] = ""
+char text[] = ""
 
-// char* getToken() {
-//     return strtok(text, " ");
-// }
+char* getToken() {
+    return strtok(text, " ");
+}
 
 int doesMatch(char token, const char chars[]) {
     
@@ -21,6 +21,7 @@ int doesMatch(char token, const char chars[]) {
 int main() {
     const char rules[] = {'$', '1', '.'};
     printf("isEqual %d\n", doesMatch('a', rules));
+    
 
     return 0;
 }
@@ -65,6 +66,9 @@ int main() {
 //     }
 // }
 
+
+
+
 // void I() {
 //     E();
 
@@ -93,6 +97,48 @@ int main() {
 //     if(token == ']') return;
 // }
 
+
+// void W () {
+//     E()
+//     token = getToken()
+//     if(token != "?") return printf("ERROR: Expression should follow '?' in IF clause");
+
+//     C()
+//     for(; token != '}'; token = getToken()) {
+//         C();
+//     }
+
+// }
+
+
+
+// void A() {
+//     token = getToken()
+//     K()
+//     token=getToken()
+//     if(token != "=") {
+//         return printf("ERROR: Expression should follow '='");
+//     }
+//     token=getToken()
+//     E()
+//     token=getToken()
+//      if(token != ";") {
+//         return printf("ERROR: Expression should follow ';'");
+//     }
+// }
+
+// void O() {
+//     E()
+//     token=getToken()
+//     if(token != ";") return printf("ERROR: Expression should follow ';'");
+// }
+
+// void G() {
+//     K()
+//     token=getToken()
+//     if(token != ";") return printf("ERROR: Expression should follow ';'");
+// }
+
 // void E() {
 //     T();
 
@@ -102,10 +148,39 @@ int main() {
 // }
 
 // void T() {
-    // U();
-    // token == '*' || token == '/' || token == '%'
-    // const char rules[] = {'*', '/', '%'};
-    // for(token = getToken(); doesMatch(token, rules); token = getToken()) {
-    //     U();
-    // }
+//     U();
+//     token == '*' || token == '/' || token == '%'
+//     const char rules[] = {'*', '/', '%'};
+//     for(token = getToken(); doesMatch(token, rules); token = getToken()) {
+//         U();
+//     }
+// }
+
+// void U() {
+//     F();
+
+//     token = getToken()
+   
+//    if(token == "^") {
+//     token = getToken()
+//      U()
+//    }
+
+// }
+
+
+// void F() {
+//    token = getToken()
+//    if(token == "(") {
+//         E()
+//         token = getToken()
+
+//         if(token != ")") {
+//             printf("ERROR: Sentence should follow ')'")
+//         }
+
+//    }
+
+//    K()
+//    R()
 // }
