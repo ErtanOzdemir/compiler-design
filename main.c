@@ -1,231 +1,233 @@
 #include <stdio.h>
 #include <string.h>
 
-#include <string.h> 
+// int index = 0;
 
-
-int index = 0;
-
-char text[] = "n = 0;
-{ n - 2*5 ?
-	< n;
-	n = n + 1;
-}
-";
+// char text[] = "n = 0 ;
+// { n - 2*5 ?
+// 	< n;
+// 	n = n + 1;
+// }
+// ";
    
 
-char* getToken() {
-    char token = get()
-    index++;
-    return token
-}
+// char* getToken() {
+//     char token;
+//     if(index<text.length()){
+//         if(token=text[index]!='0' && token !=' '){
+//             token=text[index];
+//             index++
+//         }
+//     }
+//     return token;
+// }
 
-int doesMatch(char token, const char chars[]) {
+// int doesMatch(char token, const char chars[]) {
     
-    for(int i = 0; i < strlen(chars); i++) {
-        if(token == chars[i]) return 1;
-    }
+//     for(int i = 0; i < strlen(chars); i++) {
+//         if(token == chars[i]) return 1;
+//     }
 
-    return 0;
-}
+//     return 0;
+// }
 
 
-int main() {
-    const char rules[] = {'$', '1', '.'};
-    printf("isEqual %d\n", doesMatch('a', rules));
+// int main() {
+//     const char rules[] = {'$', '1', '.'};
+//     printf("isEqual %d\n", doesMatch('a', rules));
     
 
-    return 0;
-}
+//     return 0;
+// }
 
 
-void P() {
-    if(token == '.') {
-        printf("end of the program\n");
-        return;
-    }
+// void P() {
+//     if(token == '.') {
+//         printf("end of the program\n");
+//         return;
+//     }
     
-    C();
-}
+//     C();
+// }
 
-void C() {
-    switch(token) {
-        case '[':
-            I();
-            token = getToken();
-            break;
+// void C() {
+//     switch(token) {
+//         case '[':
+//             I();
+//             token = getToken();
+//             break;
         
-        case '{':
-            token = getToken();
-            W();
-            break;
+//         case '{':
+//             token = getToken();
+//             W();
+//             break;
 
-        case '<':
-            token = getToken();
-            O();
-            break;
+//         case '<':
+//             token = getToken();
+//             O();
+//             break;
         
-        case '>':
-            token = getToken();
-            G();
-            break;
+//         case '>':
+//             token = getToken();
+//             G();
+//             break;
 
-        default:
-            token = getToken();
-            A();
-            break;
+//         default:
+//             token = getToken();
+//             A();
+//             break;
 
-    }
-}
-
-
+//     }
+// }
 
 
-void I() {
-    E();
 
-    token = getToken();
-    if(token != '?') printf("ERROR: Expression should follow '?' in IF clause\n");
 
-    token = getToken();
-    C();
+// void I() {
+//     E();
 
-    for(;token != ':' || token != ']'; token = getToken()) {
-        C();
-    }
+//     token = getToken();
+//     if(token != '?') printf("ERROR: Expression should follow '?' in IF clause\n");
+
+//     token = getToken();
+//     C();
+
+//     for(;token != ':' || token != ']'; token = getToken()) {
+//         C();
+//     }
     
-    if(token == ']') return;
+//     if(token == ']') return;
 
-    if(token != ':') printf("ERROR: Sentence should follow ':' in IF clause\n");
+//     if(token != ':') printf("ERROR: Sentence should follow ':' in IF clause\n");
 
-    token = getToken();
-    C();
+//     token = getToken();
+//     C();
 
-    for(;token != ']'; token = getToken()) {
-        C();
-    }
+//     for(;token != ']'; token = getToken()) {
+//         C();
+//     }
 
-    token = getToken();
-    if(token == ']') return;
-}
-
-
-void W () {
-    E()
-    token = getToken()
-    if(token != "?") return printf("ERROR: Expression should follow '?' in while loop\n");
-
-    C()
-    for(; token != '}'; token = getToken()) {
-        C();
-    }
-
-}
+//     token = getToken();
+//     if(token == ']') return;
+// }
 
 
+// void W () {
+//     E()
+//     token = getToken()
+//     if(token != "?") return printf("ERROR: Expression should follow '?' in while loop\n");
 
-void A() {
-    K()
-    token=getToken()
-    if(token != "=") {
-        return printf("ERROR: Expression should follow '='\n");
-    }
-    token=getToken()
-    E()
-    token=getToken()
-     if(token != ";") {
-        return printf("ERROR: Expression should end with ';'\n");
-    }
-}
+//     C()
+//     for(; token != '}'; token = getToken()) {
+//         C();
+//     }
 
-void O() {
-    E()
-    token=getToken()
-    if(token != ";") return printf("ERROR: Expression should follow ';'\n");
-}
+// }
 
-void G() {
-    K()
-    token=getToken()
-    if(token != ";") return printf("ERROR: Expression should follow ';'\n");
-}
 
-void E() {
-    T();
-    const char rules[] = {'+', '-'};
-    for(token = getToken(); doesMatch(token, rules); token  = getToken()) {
-        T();
-    }
-}
 
-void T() {
-    U();
-    const char rules[] = {'*', '/', '%'};
-    for(token = getToken(); doesMatch(token, rules); token = getToken()) {
-        U();
-    }
-}
+// void A() {
+//     K();
+//     token=getToken();
+//     if(token != "=") {
+//         return printf("ERROR: Expression should follow '='\n");
+//     }
+//     token=getToken();
+//     E();
+//     token=getToken();
+//      if(token != ";") {
+//         return printf("ERROR: Expression should end with ';'\n");
+//     }
+// }
 
-void U() {
-    F();
+// void O() {
+//     E();
+//     token=getToken();
+//     if(token != ";") return printf("ERROR: Expression should follow ';'\n");
+// }
 
-    token = getToken();
+// void G() {
+//     K();
+//     token=getToken();
+//     if(token != ";") return printf("ERROR: Expression should follow ';'\n");
+// }
+
+// void E() {
+//     T();
+//     const char rules[] = {'+', '-'};
+//     for(token = getToken(); doesMatch(token, rules); token  = getToken()) {
+//         T();
+//     }
+// }
+
+// void T() {
+//     U();
+//     const char rules[] = {'*', '/', '%'};
+//     for(token = getToken(); doesMatch(token, rules); token = getToken()) {
+//         U();
+//     }
+// }
+
+// void U() {
+//     F();
+
+//     token = getToken();
    
-   if(token == "^") {
-    token = getToken();
-     U();
-   }
+//    if(token == "^") {
+//     token = getToken();
+//      U();
+//    }
 
-}
+// }
 
 
-void F() {
+// void F() {
    
-   if(token == "(") {
-        E();
-        token = getToken();
+//    if(token == "(") {
+//         E();
+//         token = getToken();
 
-        if(token != ")") {
-            printf("ERROR: Sentence should follow ')'\n");
-        }
+//         if(token != ")") {
+//             printf("ERROR: Sentence should follow ')'\n");
+//         }
 
-   }else {
-       int isKOkay= K();
+//    }else {
+//        int isKOkay= K();
 
-       if(!isKOkay) {
-            R();
-       }
+//        if(!isKOkay) {
+//             R();
+//        }
        
-   }
+//    }
 
   
-}
+// }
 
 
-int K() {
+// int K() {
 
-    char letters[] ="abcdefghijklmnopqrstuvwxyz"
+//     char letters[] ="abcdefghijklmnopqrstuvwxyz"
 
-    token = getToken();
+//     token = getToken();
 
-    if (strchr(letters, token) == NULL) {
-     return 0;
-    }
+//     if (strchr(letters, token) == NULL) {
+//      return 0;
+//     }
 
-    return 1;
-
-
-}
+//     return 1;
 
 
-void R() {
+// }
 
-     char numbers[] ="0123456789"
 
-    token = getToken();
+// void R() {
 
-    if (strchr(numbers, token) == NULL) {
-      printf("Wrong grouping expression\n");
-    }
+//      char numbers[] ="0123456789"
 
-}
+//     token = getToken();
+
+//     if (strchr(numbers, token) == NULL) {
+//       printf("Wrong grouping expression\n");
+//     }
+
+// }
