@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <ctype.h>
 #define TO() printf("TOKEN IS %c\n", token);
 
-char text[] = "n=0;{n-2*5?<n;n=n+1;}.";
 
 char code[3000];
 
@@ -25,6 +25,23 @@ void U();
 void R();
 void F();
 
+
+
+void removeWhitespace(char *text) {
+    char *src = text;
+    char *dst = text;
+    
+    while (*src != '\0') {
+        if (!isspace((unsigned char)*src)) {
+            *dst = *src;
+            dst++;
+        }
+        src++;
+    }
+    
+    *dst = '\0';
+}
+
 char getToken() {
     if(indx < strlen(code)){
         return code[indx++];
@@ -44,13 +61,12 @@ int doesMatch(char token, const char chars[]) {
 
 int K() {
     char letters[] ="abcdefghijklmnopqrstuvwxyz";
-    
+
     if (strchr(letters, token) == NULL) {
      return 0;
     } else {
         token = getToken();
     }
-
     return 1;
 }
 
@@ -137,8 +153,8 @@ void E() {
 }
 
 void A() {
-    K();
 
+    K();
     if(token != '=') {
         printf("ERROR: Expression should follow '='\n");
         exit(1);
@@ -162,8 +178,6 @@ void O() {
     if(token != ';') printf("ERROR: Expression should follow ';'\n");
     token = getToken();
 }
-
-
 
 
 
@@ -265,7 +279,7 @@ void P() {
 
 
 int main() {
-    token = getToken();
+ 
 
     FILE *f = fopen("example.abe", "r");
     
@@ -276,11 +290,9 @@ int main() {
         c = getc(f);
     }
 
-    // fix CODE
-    // trim spaces and new lines
-    printf("CODE:\n%s\n", code);
+    removeWhitespace(code);
 
-    printf("INSTEAD IT SHOULD BE\n%s\n\n", text);
+    token = getToken();
 
     P();
 
