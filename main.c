@@ -2,11 +2,10 @@
 #include <string.h>
 #include <stdlib.h>
 #include <ctype.h>
+
 #define TO() printf("TOKEN IS %c\n", token);
 
-
 char code[3000];
-
 
 int indx = 0;
 char token = '\0';
@@ -25,7 +24,25 @@ void U();
 void R();
 void F();
 
+// ANSI COLOR CODES
+void red() {
+  printf("\e[0;31m");
+}
 
+
+void green() {
+  printf("\e[1;32m");
+}
+
+void reset () {
+  printf("\033[0m");
+}
+
+void printErr(char *errMessage) {
+    red();
+    printf("ERROR: %s\n", errMessage);
+    reset();
+}
 
 void removeWhitespace(char *text) {
     char *src = text;
@@ -38,7 +55,7 @@ void removeWhitespace(char *text) {
         }
         src++;
     }
-    
+
     *dst = '\0';
 }
 
@@ -73,7 +90,9 @@ int K() {
 void G() {
     K();
     token=getToken();
-    if(token != ';') printf("ERROR: Expression should follow ';'\n");
+    if(token != ';') {
+        printErr("Expression should follow ';'\n'");
+    }
 }
 
 void R() {
@@ -147,16 +166,13 @@ void E() {
         indx =  indx - 2;
         token = getToken();
     }
-
-
-
 }
 
 void A() {
 
     K();
     if(token != '=') {
-        printf("ERROR: Expression should follow '='\n");
+        printErr("Expression should follow '='");
         exit(1);
     } 
 
@@ -165,12 +181,11 @@ void A() {
     E();
 
     if(token != ';') {
-        printf("ERROR: Expression should end with ';'\n");
+        printErr("Expression should end with ';'");
         exit(1);
     }
 
     token = getToken();
-
 }
 
 void O() {
@@ -178,8 +193,6 @@ void O() {
     if(token != ';') printf("ERROR: Expression should follow ';'\n");
     token = getToken();
 }
-
-
 
 void C() {
     switch(token) {
@@ -272,7 +285,9 @@ void P() {
     }
 
     if(token == '.') {
-        printf("SUCCESS | end of the program\n");
+        green();
+        printf("SUCCESS\n");
+        reset();
         return;
     }
 }
